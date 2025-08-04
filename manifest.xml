@@ -3,6 +3,7 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
            xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+           xmlns:ov="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
            xsi:type="MailApp">
 
   <Id>4a3b8d25-81b6-4e6b-9d55-123456789abc</Id>
@@ -13,6 +14,8 @@
   <Description DefaultValue="Warns users when sending emails to external recipients."/>
   <IconUrl DefaultValue="https://steveitworks.github.io/external-email-checker/icon32.png"/>
   <SupportUrl DefaultValue="https://steveitworks.github.io/external-email-checker/"/>
+  <Type>Mail</Type>
+
   <Hosts>
     <Host Name="Mailbox"/>
   </Hosts>
