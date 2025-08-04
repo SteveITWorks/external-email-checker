@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+           xsi:type="MailApp">
+
+  <Id>4a3b8d25-81b6-4e6b-9d55-123456789abc</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>External Email Checker</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="External Email Warning"/>
+  <Description DefaultValue="Warns users when sending emails to external recipients."/>
+  <IconUrl DefaultValue="https://steveitworks.github.io/external-email-checker/icon32.png"/>
+  <SupportUrl DefaultValue="https://steveitworks.github.io/external-email-checker/"/>
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+
+  <Requirements>
+    <Sets DefaultMinVersion="1.10">
+      <Set Name="Mailbox"/>
+    </Sets>
+  </Requirements>
+
+  <FormSettings>
+    <Form xsi:type="ItemSend">
+      <MessageType>Message</MessageType>
+      <FunctionFileUrl>https://steveitworks.github.io/external-email-checker/commands.js</FunctionFileUrl>
+    </Form>
+  </FormSettings>
+
+  <Permissions>ReadWriteItem</Permissions>
+
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit"/>
+  </Rule>
+
+  <DisableEntityHighlighting>true</DisableEntityHighlighting>
+
+  <VersionOverrides Version="1.0">
+    <Requirements>
+      <bt:Sets DefaultMinVersion="1.10">
+        <bt:Set Name="Mailbox"/>
+      </bt:Sets>
+    </Requirements>
+
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <ExtensionPoint xsi:type="MessageSend">
+          <MessageSendCommandSurface>
+            <LaunchEvent>
+              <LaunchEvents>
+                <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler"/>
+              </LaunchEvents>
+            </LaunchEvent>
+          </MessageSendCommandSurface>
+        </ExtensionPoint>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="icon32" DefaultValue="https://steveitworks.github.io/external-email-checker/icon32.png"/>
+        <bt:Image id="icon80" DefaultValue="https://steveitworks.github.io/external-email-checker/icon80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Commands.Url" DefaultValue="https://steveitworks.github.io/external-email-checker/commands.js"/>
+        <bt:Url id="Dialog.Url" DefaultValue="https://steveitworks.github.io/external-email-checker/confirmation.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="groupLabel" DefaultValue="External Email Checker"/>
+      </bt:ShortStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
