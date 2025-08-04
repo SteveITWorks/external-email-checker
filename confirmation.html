@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>External Email Warning</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    h3 {
+      color: #b00020;
+    }
+    button {
+      margin-right: 10px;
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h3>External Email Warning</h3>
+  <p>You are about to send this email to an external recipient.</p>
+  <p>Do you want to continue?</p>
+  <button onclick="Office.context.ui.messageParent('continue')">Yes, Send</button>
+  <button onclick="Office.context.ui.messageParent('cancel')">No, Cancel</button>
+</body>
+</html>
