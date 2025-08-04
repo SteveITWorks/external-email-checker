@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>External Email Warning</title>
-  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -18,12 +17,21 @@
       font-size: 14px;
     }
   </style>
+  <script>
+    function sendResponse(response) {
+      if (window.Office && Office.context && Office.context.ui) {
+        Office.context.ui.messageParent(response);
+      } else {
+        window.parent.postMessage(response, '*'); // fallback for test
+      }
+    }
+  </script>
 </head>
 <body>
   <h3>External Email Warning</h3>
   <p>You are about to send this email to an external recipient.</p>
   <p>Do you want to continue?</p>
-  <button onclick="Office.context.ui.messageParent('continue')">Yes, Send</button>
-  <button onclick="Office.context.ui.messageParent('cancel')">No, Cancel</button>
+  <button onclick="sendResponse('continue')">Yes, Send</button>
+  <button onclick="sendResponse('cancel')">No, Cancel</button>
 </body>
 </html>
