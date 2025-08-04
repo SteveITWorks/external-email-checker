@@ -29,18 +29,22 @@
   <FormSettings>
     <Form xsi:type="ItemSend">
       <MessageType>Message</MessageType>
+      <!-- This section is ignored in new Outlook but OK to leave -->
       <FunctionFileUrl>https://steveitworks.github.io/external-email-checker/commands.js</FunctionFileUrl>
     </Form>
   </FormSettings>
 
   <Permissions>ReadWriteItem</Permissions>
-
   <Rule xsi:type="RuleCollection" Mode="Or">
     <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
     <Rule xsi:type="ItemIs" ItemType="Message" FormType="Edit"/>
   </Rule>
 
   <DisableEntityHighlighting>true</DisableEntityHighlighting>
+
+  <LaunchEvents>
+    <LaunchEvent Type="OnMessageSend" FunctionName="onMessageSendHandler"/>
+  </LaunchEvents>
 
   <VersionOverrides Version="1.0">
     <Requirements>
@@ -76,5 +80,16 @@
         <bt:String id="groupLabel" DefaultValue="External Email Checker"/>
       </bt:ShortStrings>
     </Resources>
+
+    <!-- REQUIRED FOR NEW OUTLOOK & OUTLOOK WEB -->
+    <VersionOverrides xsi:type="ov:VersionOverridesV1_0">
+      <Hosts>
+        <Host xsi:type="MailHost">
+          <DesktopFormFactor>
+            <FunctionFile resid="Commands.Url"/>
+          </DesktopFormFactor>
+        </Host>
+      </Hosts>
+    </VersionOverrides>
   </VersionOverrides>
 </OfficeApp>
